@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume ATS Optimizer | AI-Powered Resume Scoring</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Resume ATS Optimizer</h1>
+            <p class="subtitle">AI-powered resume analysis and optimization</p>
+        </header>
+
+        <!-- Upload Section -->
+        <section class="upload-section" id="uploadSection">
+            <div class="upload-grid">
+                <!-- Resume Upload -->
+                <div class="upload-card">
+                    <h2>1. Upload Your Resume</h2>
+                    <form id="analyzeForm" enctype="multipart/form-data">
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="resumeFile" name="resume" accept=".pdf,.txt" class="file-input">
+                            <label for="resumeFile" class="file-label">
+                                <span id="fileName">Choose PDF or TXT file (max 5MB)</span>
+                            </label>
+                        </div>
+
+                        <div class="divider">OR</div>
+
+                        <textarea
+                            id="resumeText"
+                            name="resume_text"
+                            placeholder="Paste your resume text here..."
+                            rows="6"
+                        ></textarea>
+                    </form>
+                </div>
+
+                <!-- Job Description -->
+                <div class="upload-card">
+                    <h2>2. Paste Job Description</h2>
+                    <textarea
+                        id="jobDescription"
+                        name="job_description"
+                        placeholder="Paste the job description here...&#10;&#10;Include all requirements, qualifications, and skills mentioned in the posting."
+                        rows="10"
+                        required
+                    ></textarea>
+                </div>
+            </div>
+
+            <button type="submit" form="analyzeForm" class="analyze-btn" id="analyzeBtn">
+                Analyze Resume
+            </button>
+        </section>
+
+        <!-- Loading State -->
+        <section class="loading-section hidden" id="loadingSection">
+            <div class="loader"></div>
+            <p class="loading-text" id="loadingText">Analyzing your resume...</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section hidden" id="resultsSection">
+            <!-- Score Gauge -->
+            <div class="score-container">
+                <div class="score-gauge">
+                    <div class="score-circle">
+                        <svg viewBox="0 0 200 200">
+                            <circle cx="100" cy="100" r="90" class="score-bg"></circle>
+                            <circle cx="100" cy="100" r="90" class="score-progress" id="scoreCircle"></circle>
+                        </svg>
+                        <div class="score-text">
+                            <div class="score-label">Current Score</div>
+                            <div class="score-value" id="currentScore">0</div>
+                        </div>
+                    </div>
+                    <div class="score-projected">
+                        <div class="projected-label">Projected Score</div>
+                        <div class="projected-value" id="projectedScore">0</div>
+                        <div class="improvement" id="improvement">+0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Score Breakdown -->
+            <div class="breakdown-section">
+                <h2>Score Breakdown</h2>
+                <div class="breakdown-grid" id="breakdownGrid">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+
+            <!-- Missing Keywords -->
+            <div class="keywords-section">
+                <h2>Missing Keywords</h2>
+                <p class="section-description">These keywords from the job description are not in your resume</p>
+                <div class="keywords-container" id="keywordsContainer">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+
+            <!-- Weak Bullets & Rewrites -->
+            <div class="rewrites-section">
+                <h2>Suggested Improvements</h2>
+                <p class="section-description">AI-optimized versions of your weakest bullet points</p>
+                <div class="rewrites-container" id="rewritesContainer">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+
+            <!-- Projection Summary -->
+            <div class="projection-section">
+                <div class="projection-card">
+                    <h3>Score Improvement Summary</h3>
+                    <p id="projectionSummary"></p>
+                </div>
+            </div>
+
+            <!-- Analyze Another Button -->
+            <button class="analyze-another-btn" id="analyzeAnotherBtn">
+                Analyze Another Resume
+            </button>
+        </section>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
